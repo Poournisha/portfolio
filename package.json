@@ -1,0 +1,12 @@
+{
+  "name": "poournisha-portfolio",
+  "version": "1.0.0",
+  "description": "Poournisha I | Portfolio Website",
+  "scripts": {
+    "start": "serve public"
+  },
+  "dependencies": {
+    "serve": "^14.2.0"
+  }
+}
+

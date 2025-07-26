@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poournisha I - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a2e, #16213e, #0f0f0f);
+            background-size: 400% 400%;
+            animation: galaxyBackground 20s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        @keyframes galaxyBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+        .main-container {
+            position: relative;
+            z-index: 2;
+            padding: 2rem 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #4f46e5;
+            box-shadow: 0 0 30px rgba(79, 70, 229, 0.5);
+            object-fit: cover;
+            margin: 0 auto;
+            display: block;
+            animation: profileGlow 3s ease-in-out infinite;
+        }
+        @keyframes profileGlow {
+            0%, 100% { box-shadow: 0 0 30px rgba(79, 70, 229, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(79, 70, 229, 0.8); }
+        }
+        .skill-bar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    padding: 3px;
+    margin: 10px 0;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+}
+.skill-progress {
+    background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    height: 25px;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    color: white;
+    font-weight: 600;
+    transition: width 2s ease-in-out;
+    box-shadow: 0 0 10px #ec4899, 0 0 20px #8b5cf6;
+    animation: glowPulse 2.5s ease-in-out infinite alternate;
+}
+.skill-progress.glow {
+    box-shadow: 0 0 10px #00ffe1, 0 0 20px #00ffe1, 0 0 30px #00ffe1;
+    transition: box-shadow 0.3s ease-in-out;
+    background-color: #00ffe1; /* Optional neon color */
+    color: #000; /* Contrast */
+    font-weight: bold;
+}
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 10px #ec4899, 0 0 20px #8b5cf6;
+    }
+    100% {
+        box-shadow: 0 0 20px #ec4899, 0 0 30px #8b5cf6;
+    }
+}
+        @keyframes skillGlow {
+            0% { box-shadow: 0 0 5px rgba(79, 70, 229, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(79, 70, 229, 0.8); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(79, 70, 229, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .cert-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 0.75rem 0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .cert-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(79, 70, 229, 0.6);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(79, 70, 229, 0.2);
+        }
+        .project-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(236, 72, 153, 0.6);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.2);
+        }
+        .btn {
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0.25rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(79, 70, 229, 0.3);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+        h1 {
+            font-size: 3.5rem;
+            background: linear-gradient(135deg, #4f46e5, #ec4899, #14b8a6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 1rem;
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+        @keyframes titleGlow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        h2 {
+            color: #4f46e5;
+            font-size: 2.5rem;
+            margin: 2rem 0 1rem 0;
+            text-align: center;
+        }
+        h3 {
+            color: #ec4899;
+            font-size: 1.5rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+        .text-white { color: white; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-center { text-align: center; }
+        .badge {
+            background: linear-gradient(135deg, #ec4899, #f59e0b);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        @media (max-width: 768px) {
+            .main-container { padding: 1rem 0.5rem; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .profile-pic { width: 150px; height: 150px; }
+            .glass-card { padding: 1.5rem; }
+            .project-card { padding: 1.5rem; }
+        }
+        .category-header {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        .contact-link {
+            color: #4f46e5;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .contact-link:hover {
+            color: #ec4899;
+            text-decoration: underline;
+        }
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        .typing-effect {
+            width: fit-content;
+    	    overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #d1d5db;
+            color: #d1d5db;
+            animation:
+               typing 2.5s steps(22, end),
+               blink .75s step-end 3,
+               textGlow 3s ease-in-out 2.5s forwards;
+               animation-fill-mode: forwards;
+}
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink {
+    50% { border-color: transparent }
+}
+@keyframes textGlow {
+    from {
+        text-shadow: 0 0 0 transparent;
+        color: #d1d5db;
+    }
+    to {
+        text-shadow:
+            0 0 5px #ec4899,
+            0 0 10px #ec4899,
+            0 0 20px #7c3aed,
+            0 0 40px #4f46e5;
+        color: #ffffff;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+
+    <div class="main-container">
+        <!-- Hero Section -->
+        <div class="glass-card text-center">
+            <img src="img.jpg" alt="Poournisha I" class="profile-pic">
+            <h1>Poournisha I</h1>
+            <div class="text-xl text-gray-300 mb-4">
+                Bachelor of Information Technology<br>
+                <span class="text-white">Velammal College of Engineering and Technology</span>
+            </div>
+            <div class="text-lg text-gray-300 mb-6 typing-effect">
+                Future-Focused Technologist | Java Developer | AI-Ready Web Engineer
+            </div>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:poournishailangovan2006@gmail.com" class="btn btn-primary">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="tel:+917810086889" class="btn btn-primary">
+                    <i class="fas fa-phone"></i> Call
+                </a>
+                <a href="https://linkedin.com/in/poournisha-ilangovan" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/Poournisha" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://leetcode.com/poournishailangovan2006" target="_blank" class="btn btn-secondary">
+                    <i class="fas fa-code"></i> LeetCode
+                </a>
+            </div>
+        </div>
+        <section id="about" class="my-12">
+        <div class="glass-card">
+            <h2><i class="fas fa-user"></i> About Me</h2>
+            <p class="text-gray-300 text-lg leading-relaxed">
+                As a tech enthusiast with a builder's mindset, I specialize in crafting full-stack web applications and exploring the intersections of data and design. I'm passionate about learning emerging technologies and solving real-world challenges through code, creativity, and collaboration.
+            </p>
+        </div>
+    </section>
+        <section id="skills" class="my-12">
+        <div class="glass-card">
+            <h2><i class="fas fa-code"></i> Technical Skills</h2>
+            <div class="skill-grid">
+                <div>
+                    <h3>Programming Languages</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%">Python 85%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%">Java 80%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%">C 75%</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Web Technologies</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%">HTML/CSS 90%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%">JavaScript 85%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%">React.js 75%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%">PHP 80%</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>Databases & Tools</h3>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%">MySQL 80%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 70%">MongoDB 70%</div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%">SQLite 75%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="my-12">
+        <div class="glass-card">
+            <h2><i class="fas fa-project-diagram"></i> Major Projects</h2>
+            
+            <div class="project-card">
+                <h3><i class="fas fa-palette"></i> Art Gallery Management System</h3>
+                <p class="text-gray-300 mb-4">
+                    Comprehensive web application for managing art galleries, exhibitions, and artist portfolios with user authentication and admin panel.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://github.com/Poournisha/Art-Gallery-Management-System" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i> GitHub Repo
+                    </a>
+                    <a href="https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/580f3028-e22e-4ee0-b96e-4efe134a479f" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-presentation"></i> Presentation
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><i class="fas fa-plane"></i> Online Flight Booking Management System</h3>
+                <p class="text-gray-300 mb-4">
+                    Full-stack PHP application for flight bookings with user registration, flight search, booking management, and payment integration.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://github.com/Poournisha/Online-Flight-Booking-Management-System" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i> GitHub Repo
+                    </a>
+                    <a href="https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/732279fc-16f8-4f48-823d-91c7100dc2a4" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-presentation"></i> Presentation
+                    </a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><i class="fas fa-map"></i> Real-Time Route Simulation Using Offline Data</h3>
+                <p class="text-gray-300 mb-4">
+                    AI-powered offline navigation system using Dijkstra's Algorithm with OpenStreetMap data, Leaflet.js, and real-time route optimization.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <a href="https://github.com/Poournisha/madurai_offline_map" target="_blank" class="btn btn-primary">
+                        <i class="fab fa-github"></i> GitHub Repo
+                    </a>
+                    <a href="https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/02e547f0-b493-49df-80b5-4e81b739c805" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-presentation"></i> Presentation
+                    </a>
+                    <a href="https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/b194ed01-ac71-4fb2-89e5-abb592e028d0" target="_blank" class="btn btn-secondary">
+                        <i class="fas fa-file-pdf"></i> Research Paper
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+        <div class="glass-card">
+            <h2><i class="fas fa-certificate"></i> Certifications & Achievements</h2>
+            <div class="category-header">
+                <i class="fas fa-industry"></i> Industry Simulations
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/54806cdb-881d-4b97-8c38-1122436f8e0c', '_blank')">
+                    <h3><i class="fas fa-chart-line"></i> Accenture Developer and Technology Job Simulation</h3>
+                    <p class="text-gray-300">Completed practical tasks in SDLC, Software Testing, Algorithmic Thinking, and Code Debugging</p>
+                    <span class="badge">March 2025</span>
+                </div>
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/c29c9642-cfa4-44da-93a6-cae6c9c02b88', '_blank')">
+                    <h3><i class="fas fa-plane"></i> British Airways Data Science Job Simulation</h3>
+                    <p class="text-gray-300">Web scraping and predicting customer buying behavior analysis</p>
+                    <span class="badge">March 2025</span>
+                </div>
+            </div>
+            <div class="category-header">
+                <i class="fas fa-code"></i> Programming & Development
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/849a552a-5915-438a-b0f3-bfd08474cd8b', '_blank')">
+                    <h3><i class="fas fa-database"></i> IBM SQL and Relational Databases 101</h3>
+                    <p class="text-gray-300">Comprehensive course on SQL and database management</p>
+                    <span class="badge">March 2025</span>
+                </div>
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/c870df16-11f7-4907-a673-cedcf78b2dcb', '_blank')">
+                    <h3><i class="fas fa-robot"></i> Infosys Generative AI for All</h3>
+                    <p class="text-gray-300">Understanding and applications of Generative AI technologies</p>
+                    <span class="badge">March 2025</span>
+                </div>
+            </div>
+            <div class="category-header">
+                <i class="fas fa-shield-alt"></i> Cybersecurity
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/ecc2d3a6-05a9-48bc-bca4-a386326a4e50', '_blank')">
+                    <h3><i class="fas fa-lock"></i> Tata STRIVE Cybersecurity for Beginners</h3>
+                    <p class="text-gray-300">40-hour comprehensive cybersecurity fundamentals course</p>
+                    <span class="badge">Nov 2024</span>
+                </div>
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/9c805766-452c-4f52-b80a-a93101396cfb', '_blank')">
+                    <h3><i class="fas fa-bug"></i> Learning from Major Cyber Security Incidents</h3>
+                    <p class="text-gray-300">8-hour course analyzing various cyber attacks through case studies</p>
+                    <span class="badge">March 2025</span>
+                </div>
+            </div>
+            <div class="category-header">
+                <i class="fas fa-cloud"></i> Cloud Computing & AI
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/4b20e2a3-3dd9-41b8-bfb7-2a126efaf99e', '_blank')">
+                    <h3><i class="fas fa-cloud-upload-alt"></i> How to Get Into Cloud Computing</h3>
+                    <p class="text-gray-300">University of Leeds - 2 weeks, 3 hours per week course on cloud computing fundamentals</p>
+                    <span class="badge">FutureLearn</span>
+                </div>
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/95a9d0dc-68ab-4964-83b1-1043945b56ca', '_blank')">
+                    <h3><i class="fas fa-brain"></i> HP LIFE AI for Beginners</h3>
+                    <p class="text-gray-300">Understanding AI impact, concepts, applications, and ethical implications</p>
+                    <span class="badge">March 2025</span>
+                </div>
+            </div>
+            <div class="category-header">
+                <i class="fas fa-graduation-cap"></i> Academic Achievements
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/c3e1d3dc-d02e-4dc7-b51c-9597565d74a0', '_blank')">
+                    <h3><i class="fas fa-user-secret"></i> NPTEL Privacy and Security in Online Social Media</h3>
+                    <p class="text-gray-300">12-week comprehensive course on digital privacy and security</p>
+                    <span class="badge">64% Score</span>
+                </div>
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/72f33ff3-79e7-4fe0-9518-5bf37cef58d4', '_blank')">
+                    <h3><i class="fas fa-tint"></i> NPTEL Wastewater Treatment and Recycling</h3>
+                    <p class="text-gray-300">12-week course on environmental engineering and water management</p>
+                    <span class="badge">50% Score</span>
+                </div>
+            </div>
+            <div class="category-header">
+                <i class="fas fa-trophy"></i> Competition Achievements
+            </div>
+            <div class="cert-grid">
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/a3beb70e-91d6-42e1-9d1f-aaa908935449', '_blank')">
+                    <h3><i class="fas fa-medal"></i> Code Arena - 1st Place</h3>
+                    <p class="text-gray-300">Programming competition winner</p>
+                    <span class="badge">1st Place</span>
+                </div>
+                <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/aef5a71e-d1d8-42ab-b63e-ad0218142418', '_blank')">
+                    <h3><i class="fas fa-calculator"></i> Fun on Mathematics - 1st Place</h3>
+                    <p class="text-gray-300">Mathematics competition organized by Mathematics Association, VCET</p>
+                    <span class="badge">1st Place</span>
+                </div>
+            </div>
+            <div class="category-header">
+                <i class="fas fa-briefcase"></i> Professional Experience
+            </div>
+            <div class="cert-card" onclick="window.open('https://page.gensparksite.com/get_upload_url/ad59639dbefa6c381cd92fd1a6c62c9fad9f9443f691f3d70b76092cc4446cfb/default/1d748fcb-8ecc-4a0b-9666-6eb029cc1259', '_blank')">
+                <h3><i class="fas fa-building"></i> Elysium Technologies - Internship</h3>
+                <p class="text-gray-300">1-month internship with hands-on experience in IT development and professional practices</p>
+                <span class="badge">Internship</span>
+            </div>
+        </div>
+        <section id="contact" class="my-12">
+        <div class="glass-card text-center">
+            <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+            <div class="text-lg text-gray-300 mb-4">
+                <p><i class="fas fa-map-marker-alt"></i> Madurai, Tamil Nadu</p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:poournishailangovan2006@gmail.com" class="contact-link">poournishailangovan2006@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+917810086889" class="contact-link">+91-7810086889</a></p>
+            </div>
+        </div>
+        </section>
+        <footer class="bg-gray-900 text-white py-10 px-6">
+  <div class="max-w-5xl mx-auto grid gap-10 md:grid-cols-3 text-center md:text-left">
+    <div>
+      <h2 class="text-2xl font-bold text-blue-400">Poournisha I</h2>
+      <p class="text-gray-400 mt-2">
+        As a tech enthusiast with a builder's mindset, I specialize in crafting full-stack web applications and exploring the intersections of data and design. I'm passionate about learning emerging technologies and solving real-world challenges through code, creativity, and collaboration.
+      </p>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg mb-3">Quick Links</h3>
+      <ul class="space-y-2 text-gray-300">
+        <li><a href="#about" class="hover:text-blue-400 transition">About</a></li>
+        <li><a href="#skills" class="hover:text-blue-400 transition">Skills</a></li>
+        <li><a href="#projects" class="hover:text-blue-400 transition">Projects</a></li>
+        <li><a href="#contact" class="hover:text-blue-400 transition">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold text-lg mb-3">Get In Touch</h3>
+      <ul class="space-y-2 text-gray-300 text-sm">
+        <li>✉️ <a href="mailto:poournishailangovan2006@gmail.com" class="hover:text-blue-400">poournishailangovan2006@gmail.com</a></li>
+        <li>📍 Madurai, Tamilnadu, India</li>
+        <li>🎓 Velammal College of Engineering & Technology</li>
+        <li>🚀 Eager to innovate in software development and cloud computing.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mt-10 text-center text-gray-300 text-sm border-t border-gray-700 pt-4">
+    © 2025 Poournisha I. Licensed under the MIT License
+  </div>
+</footer>
+    </div>
+    <script>
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        const numberOfStars = 150;
+
+        for (let i = 0; i < numberOfStars; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (2 + Math.random() * 3) + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+    function animateSkillBars() {
+        const bars = document.querySelectorAll('.skill-progress');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    const finalPercent = parseInt(bar.getAttribute('data-width'), 10);
+                    let current = 0;
+
+                    bar.classList.add('glow'); // add glowing class
+
+                    const interval = setInterval(() => {
+                        if (current >= finalPercent) {
+                            clearInterval(interval);
+                            bar.textContent = `${bar.getAttribute('data-skill')} ${finalPercent}%`;
+                        } else {
+                            current++;
+                            bar.style.width = current + '%';
+                            bar.textContent = `${bar.getAttribute('data-skill')} ${current}%`;
+                        }
+                    }, 15); // speed of the fill
+                    
+                    observer.unobserve(bar);
+                }
+            });
+        }, { threshold: 0.4 });
+
+        bars.forEach(bar => {
+            const width = parseInt(bar.style.width);
+            const label = bar.textContent.split(' ')[0];
+            bar.setAttribute('data-width', width);
+            bar.setAttribute('data-skill', label);
+            bar.style.width = '0%';
+            bar.textContent = `${label} 0%`;
+            observer.observe(bar);
+        });
+    }
+    function setupSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    }
+    function setupCertCardHover() {
+        document.querySelectorAll('.cert-card').forEach(card => {
+            card.addEventListener('mouseenter', function () {
+                this.style.transform = 'translateY(-5px) scale(1.03)';
+            });
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    }
+    function setupParallaxStars() {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                const speed = (index % 3 + 1) * 0.5;
+                star.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        createStars();
+        animateSkillBars();
+        setupSmoothScroll();
+        setupCertCardHover();
+        setupParallaxStars();
+    });
+</script>
+</body>
+</html>
